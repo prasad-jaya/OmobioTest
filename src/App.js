@@ -4,7 +4,7 @@ import ListView from './component/listView'
 
 
 class App extends React.Component{
-  state={term:'', term2:'',  name:'', username:'',}
+  state={term:'', term2:'',  name:'', username:'', email:''}
 
   onInputChange = (event) =>{
 
@@ -31,11 +31,12 @@ class App extends React.Component{
 
     if(response.data.message === 'NoData'){
       alert("Invalid credentials.");
-    }
+    }else{
     
-    //console.log(response.data.data[2].password);
-    //this.setState({term:event.target.value}
     console.log(response.data);
+    this.setState({name:response.data.data[0].name, username:response.data.data[0].username, email:response.data.data[0].email});
+    console.log(this.state.email);
+    }
     
   }
 
@@ -60,7 +61,10 @@ class App extends React.Component{
             <div><button type="submit" className="btn btn-primary">Submit</button></div>
           </form>
 
-          <ListView/>
+          <ListView userName={this.state.name}
+                    userEmail={this.state.email}
+                    username={this.state.username}
+                    />
          
       </div>
     )
