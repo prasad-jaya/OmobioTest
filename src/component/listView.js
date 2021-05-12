@@ -6,10 +6,19 @@ class ListView extends React.Component{
     render(){
 
         return(
-            <div>
-            <div>{this.props.userName}</div>
-            <div>{this.props.userEmail}</div>
-            <div>{this.props.username}</div>
+            <div className="container">
+                <div  className="col-md-6" >
+                    <label >Name : {this.props.userName} </label>
+                </div>
+                <div  className="col-md-6" >
+                    <label >User Email : {this.props.userEmail} </label>
+                </div>
+                <div  className="col-md-6" >
+                    <label >User Name: {this.props.username} </label>
+                </div>
+            
+            <div></div>
+            <div></div>
             </div>
         )
     }
