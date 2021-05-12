@@ -1,9 +1,10 @@
 import React from 'react';
 import APIs from './APIs/APIs';
+import ListView from './component/listView'
 
 
 class App extends React.Component{
-  state={term:'', term2:'' }
+  state={term:'', term2:'',  name:'', username:'',}
 
   onInputChange = (event) =>{
 
@@ -29,11 +30,11 @@ class App extends React.Component{
 
 
     if(response.data.message === 'NoData'){
-      console.log("Sorry");
       alert("Invalid credentials.");
     }
     
     //console.log(response.data.data[2].password);
+    //this.setState({term:event.target.value}
     console.log(response.data);
     
   }
@@ -58,6 +59,8 @@ class App extends React.Component{
           <br/>
             <div><button type="submit" className="btn btn-primary">Submit</button></div>
           </form>
+
+          <ListView/>
          
       </div>
     )
