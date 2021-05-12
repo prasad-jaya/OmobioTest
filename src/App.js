@@ -1,5 +1,5 @@
 import React from 'react';
-import APIs from './APIs';
+import APIs from './APIs/APIs';
 
 
 class App extends React.Component{
@@ -20,12 +20,18 @@ class App extends React.Component{
     event.preventDefault();
 
     //console.log(this.state.term);
-    const response = await APIs.post('/search',{
+    const response = await APIs.get('/search',{
       params:{
         q:this.state.term,
         q2:this.state.term2
       }
-    })
+    });
+
+
+    if(response.data.message === 'NoData'){
+      console.log("Sorry");
+      alert("Invalid credentials.");
+    }
     
     //console.log(response.data.data[2].password);
     console.log(response.data);
@@ -41,14 +47,15 @@ class App extends React.Component{
           <form onSubmit={this.onFormSubmit}>
             <div  className="col-md-6" >
               <label htmlFor="exampleInputEmail1">Email address</label>
-              <input onChange={this.onInputChange} value={this.state.term} type="text" className="form-control" name="email" />
+              {/* <input onChange={this.onInputChange} value={this.state.term} type="text" className="form-control" name="email" /> */}
+              <input onChange={(e) => this.setState({term: e.target.value})} value={this.state.term} type="text" className="form-control" name="email" />
             </div>
 
             <div  className="col-md-6" >
-              <label htmlFor="exampleInputEmail1">Email address</label>
+              <label htmlFor="exampleInputEmail1">Password</label>
               <input onChange={this.onInputChange} value={this.state.term2} type="text" className="form-control" name="pass" />
             </div>
-
+          <br/>
             <div><button type="submit" className="btn btn-primary">Submit</button></div>
           </form>
          
